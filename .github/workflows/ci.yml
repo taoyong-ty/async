@@ -71,11 +71,11 @@ jobs:
         run: npm test
 
       - name: Setup firefox
-        if: matrix.node == 20
+        if: matrix.os == 'codebuild-ubuntu-small' && matrix.node == '20'
         id: setup-firefox
         uses: browser-actions/setup-firefox@v1
         with:
-          firefox-version: 122.0
+          firefox-version: '122.0'
 
       - name: Run browser tests
         if: matrix.node == 20
@@ -84,11 +84,11 @@ jobs:
           DISPLAY: :99.0
 
       - name: Coverage
-        if: matrix.os == 'ubuntu-latest' && matrix.node == '20'
+        if: matrix.os == 'codebuild-ubuntu-small' && matrix.node == '20'
         run: npm run coverage && npx nyc report --reporter=lcov
 
       - name: Coveralls
-        if: matrix.os == 'ubuntu-latest' && matrix.node == '20'
+        if: matrix.os == 'codebuild-ubuntu-small' && matrix.node == '20'
         uses: coverallsapp/github-action@1.1.3
         with:
             github-token: ${{ secrets.GITHUB_TOKEN }}
