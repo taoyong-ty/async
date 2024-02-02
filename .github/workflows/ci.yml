@@ -42,8 +42,8 @@ jobs:
       fail-fast: false
       matrix:
         node:
-          # - 16
-          # - 18
+          - 16
+          - 18
           - 20
         os: [codebuild-ubuntu-small]
         browser:
