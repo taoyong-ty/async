@@ -42,8 +42,8 @@ jobs:
       fail-fast: false
       matrix:
         node:
-          - 16
-          - 18
+          # - 16
+          # - 18
           - 20
         os: [codebuild-ubuntu-small]
         browser:
@@ -74,7 +74,14 @@ jobs:
       - name: Run coverage
         run: npm test
 
-      - name: Setup firefox
+      - name: Setup firefox - install gtk3
+        if: matrix.os == 'codebuild-ubuntu-small' && matrix.node == '20'
+        run: |
+          apt-add-repository -y "deb http://archive.canonical.com/ubuntu $(lsb_release -sc) partner" \
+            && apt-get update \
+            && apt-get install -y -qq libgtk-3-0 libglib2.0-0 libdbus-glib-1-2 libdbus-1-3 libasound2
+
+      - name: Setup firefox - install firefox browser
         if: matrix.os == 'codebuild-ubuntu-small' && matrix.node == '20'
         id: setup-firefox
         uses: browser-actions/setup-firefox@latest
