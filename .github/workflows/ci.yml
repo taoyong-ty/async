@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   lint:
-    runs-on: codebuild-ubuntu-small
+    runs-on: codebuild-windows-small
     strategy:
       matrix:
         node:
@@ -49,7 +49,7 @@ jobs:
         browser:
           - FirefoxHeadless
         include:
-          - os: windows-latest
+          - os: codebuild-windows-medium
             node: 20
             browser: FirefoxHeadless
 
