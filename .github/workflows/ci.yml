@@ -45,7 +45,8 @@ jobs:
           - 16
           - 18
           - 20
-        os: [codebuild-ubuntu:5.0-medium]
+        os: 
+          - codebuild-ubuntu:5.0-medium
         browser:
           - FirefoxHeadless
         include:
