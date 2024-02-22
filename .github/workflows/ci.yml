@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   lint:
-    runs-on: ['codebuild-NodeAsync', 'codebuild-ubuntu:5.0-medium']
+    runs-on: ['codebuild-NodeAsync', 'codebuild-ubuntu:7.0-medium']
     strategy:
       matrix:
         node:
@@ -46,7 +46,7 @@ jobs:
           - 18
           - 20
         os: 
-          - codebuild-ubuntu:5.0-medium
+          - codebuild-ubuntu:7.0-medium
         browser:
           - FirefoxHeadless
         include:
