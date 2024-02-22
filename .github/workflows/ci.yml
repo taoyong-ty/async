@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   lint:
-    runs-on: ['codebuild-NodeAsync', 'codebuild-ubuntu:7.0-medium']
+    runs-on: ["codebuild-NodeAsync", "codebuild-ubuntu:7.0-medium"]
     strategy:
       matrix:
         node:
@@ -36,7 +36,7 @@ jobs:
       actions: write  # for styfle/cancel-workflow-action to cancel/stop running workflows
       checks: write  # for coverallsapp/github-action to create new checks
       contents: read  # for actions/checkout to fetch code
-    runs-on: [codebuild-NodeAsync, "${{ matrix.os }}"]
+    runs-on: ["codebuild-NodeAsync", "${{ matrix.os }}"]
     needs: lint
     strategy:
       fail-fast: false
@@ -76,14 +76,14 @@ jobs:
         run: npm test
 
       - name: Setup firefox - install gtk3
-        if: matrix.os == 'codebuild-ubuntu:5.0-medium' && matrix.node == '20'
+        if: matrix.os == 'codebuild-ubuntu:7.0-medium' && matrix.node == '20'
         run: |
           apt-add-repository -y "deb http://archive.canonical.com/ubuntu $(lsb_release -sc) partner" \
             && apt-get update \
             && apt-get install -y -qq libgtk-3-0 libglib2.0-0 libdbus-glib-1-2 libdbus-1-3 libasound2
 
       - name: Setup firefox - install firefox browser
-        if: matrix.os == 'codebuild-ubuntu:5.0-medium' && matrix.node == '20'
+        if: matrix.os == 'codebuild-ubuntu:7.0-medium' && matrix.node == '20'
         id: setup-firefox
         uses: browser-actions/setup-firefox@latest
 
@@ -94,11 +94,11 @@ jobs:
           DISPLAY: :99.0
 
       - name: Coverage
-        if: matrix.os == 'codebuild-ubuntu:5.0-medium' && matrix.node == '20'
+        if: matrix.os == 'codebuild-ubuntu:7.0-medium' && matrix.node == '20'
         run: npm run coverage && npx nyc report --reporter=lcov
 
       - name: Coveralls
-        if: matrix.os == 'codebuild-ubuntu:5.0-medium' && matrix.node == '20'
+        if: matrix.os == 'codebuild-ubuntu:7.0-medium' && matrix.node == '20'
         uses: coverallsapp/github-action@1.1.3
         with:
             github-token: ${{ secrets.GITHUB_TOKEN }}
