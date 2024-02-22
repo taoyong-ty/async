@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   lint:
-    runs-on: self-hosted
+    runs-on: codebuild-ubuntu:5.0-medium
     strategy:
       matrix:
         node:
