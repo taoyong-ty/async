@@ -36,7 +36,7 @@ jobs:
       actions: write  # for styfle/cancel-workflow-action to cancel/stop running workflows
       checks: write  # for coverallsapp/github-action to create new checks
       contents: read  # for actions/checkout to fetch code
-    runs-on: codebuild-NodeAsync, ${{ matrix.os }}
+    runs-on: [codebuild-NodeAsync, "${{ matrix.os }}"]
     needs: lint
     strategy:
       fail-fast: false
