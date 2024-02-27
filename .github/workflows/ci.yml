@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   lint:
-    runs-on: "codebuild-async-${{github.run_id}}-ubuntu-7.0-medium"
+    runs-on: "codebuild-async-${{github.job_id}}-ubuntu-7.0-medium"
     strategy:
       matrix:
         node:
@@ -45,11 +45,11 @@ jobs:
           - 16
           - 18
           - 20
-        os: ["codebuild-async-${{github.run_id}}-ubuntu-7.0-medium"]
+        os: ["codebuild-async-${{github.job_id}}-ubuntu-7.0-medium"]
         browser:
           - FirefoxHeadless
         include:
-          - os: "codebuild-async-${{github.run_id}}-windows-2.0-medium"
+          - os: "codebuild-async-${{github.job_id}}-windows-2.0-medium"
             node: 20
             browser: FirefoxHeadless
 
@@ -75,14 +75,14 @@ jobs:
         run: npm test
 
       - name: Setup firefox - install gtk3
-        if: matrix.os == 'codebuild-async-{{github.run_id}}-ubuntu-7.0-medium' && matrix.node == '20'
+        if: matrix.os == 'codebuild-async-{{github.job_id}}-ubuntu-7.0-medium' && matrix.node == '20'
         run: |
           apt-add-repository -y "deb http://archive.canonical.com/ubuntu $(lsb_release -sc) partner" \
             && apt-get update \
             && apt-get install -y -qq libgtk-3-0 libglib2.0-0 libdbus-glib-1-2 libdbus-1-3 libasound2
 
       - name: Setup firefox - install firefox browser
-        if: matrix.os == 'codebuild-async-{{github.run_id}}-ubuntu-7.0-medium' && matrix.node == '20'
+        if: matrix.os == 'codebuild-async-{{github.job_id}}-ubuntu-7.0-medium' && matrix.node == '20'
         id: setup-firefox
         uses: browser-actions/setup-firefox@latest
 
@@ -93,11 +93,11 @@ jobs:
           DISPLAY: :99.0
 
       - name: Coverage
-        if: matrix.os == 'codebuild-async-{{github.run_id}}-ubuntu-7.0-medium' && matrix.node == '20'
+        if: matrix.os == 'codebuild-async-{{github.job_id}}-ubuntu-7.0-medium' && matrix.node == '20'
         run: npm run coverage && npx nyc report --reporter=lcov
 
       - name: Coveralls
-        if: matrix.os == 'codebuild-async-{{github.run_id}}-ubuntu-7.0-medium' && matrix.node == '20'
+        if: matrix.os == 'codebuild-async-{{github.job_id}}-ubuntu-7.0-medium' && matrix.node == '20'
         uses: coverallsapp/github-action@1.1.3
         with:
             github-token: ${{ secrets.GITHUB_TOKEN }}
