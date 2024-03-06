@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   lint:
-    runs-on: "codebuild-async-${{ RANDOM }}-ubuntu-7.0-medium"
+    runs-on: "codebuild-async-${{ github.run_id }}-ubuntu-7.0-medium"
     strategy:
       matrix:
         node:
