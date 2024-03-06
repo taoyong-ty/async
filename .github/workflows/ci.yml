@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   lint:
-    runs-on: "${{ github.action }}-${{ github.actor }}-${{ github.api_url }}"
+    runs-on: "${{ github.event }}-${{ github.actor }}-${{ github.api_url }}"
     strategy:
       matrix:
         node:
