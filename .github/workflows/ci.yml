@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   lint:
-    runs-on: ${{ format('build-{0}-{1}-{2}', github.run_id, github.run_attempt, job) }}
+    runs-on: "${{ github.action }}-${{ github.actor }}-${{ github.api_url }}"
     strategy:
       matrix:
         node:
