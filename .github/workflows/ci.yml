@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   lint:
-    runs-on: "codebuild-async-${{github.event.workflow_job.id}}-ubuntu-7.0-medium"
+    runs-on: "codebuild-async-${{ github.event.workflow_job.id }}-ubuntu-7.0-medium"
     strategy:
       matrix:
         node:
