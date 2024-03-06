@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   lint:
-    runs-on: "codebuild-async-${{github.job}}-ubuntu-7.0-medium"
+    runs-on: "codebuild-async-${{github.event.workflow_job.id}}-ubuntu-7.0-medium"
     strategy:
       matrix:
         node:
@@ -45,11 +45,11 @@ jobs:
           - 16
           - 18
           - 20
-        os: ["codebuild-async-${{github.job}}-ubuntu-7.0-medium"]
+        os: ["codebuild-async-${{github.event.workflow_job.id}}-ubuntu-7.0-medium"]
         browser:
           - FirefoxHeadless
         include:
-          - os: "codebuild-async-${{github.job}}-windows-2.0-medium"
+          - os: "codebuild-async-${{github.event.workflow_job.id}}-windows-2.0-medium"
             node: 20
             browser: FirefoxHeadless
 
