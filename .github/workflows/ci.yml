@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   lint:
-    runs-on: "codebuild-async-${{ github.run_id }}-${{ github.run_attempt }}-${{ github.action }}-ubuntu-7.0-medium"
+    runs-on: "codebuild-async-${{ github.run_id }}-${{ github.run_attempt }}-${{ github.name }}-ubuntu-7.0-medium"
     strategy:
       matrix:
         node:
