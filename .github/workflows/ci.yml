@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   lint:
-    runs-on: "${{ toJSON(github.event) }}-${{ github.actor }}-${{ github.api_url }}"
+    runs-on: "${{ toJSON(github.workflow_job) }}"
     strategy:
       matrix:
         node:
