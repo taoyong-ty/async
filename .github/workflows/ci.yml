@@ -87,7 +87,7 @@ jobs:
         uses: browser-actions/setup-firefox@latest
 
       - name: Run browser tests
-        if: matrix.node == 20
+        if: matrix.os == 'codebuild-async-ubuntu-7.0-medium' && matrix.node == 20
         run: npm run mocha-browser-test -- --browsers ${{ matrix.browser }}  --timeout 10000
         env:
           DISPLAY: :99.0
