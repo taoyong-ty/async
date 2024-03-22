@@ -1,4 +1,5 @@
-name: CI-CodeBuild 🚀
+name: CI-CodeBuild-Runner
+
 on:
   push:
     branches-ignore:
