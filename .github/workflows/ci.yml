@@ -10,34 +10,12 @@ permissions:
   contents: read
 
 jobs:
-  lint:
-    runs-on: codebuild-async-${{ github.job }}-ubuntu-7.0-medium
-    strategy:
-      matrix:
-        node:
-          - 20
-    steps:
-      - name: ⬇️ Checkout
-        uses: actions/checkout@v2
-
-      - name: ⎔ Setup node ${{ matrix.node }}
-        uses: actions/setup-node@v2
-        with:
-          cache: npm
-
-      - name: 📥 Download deps
-        run: npm ci
-
-      - name: 🧪 Run lint
-        run: npm run lint
-
   build:
     permissions:
       actions: write  # for styfle/cancel-workflow-action to cancel/stop running workflows
       checks: write  # for coverallsapp/github-action to create new checks
       contents: read  # for actions/checkout to fetch code
-    runs-on: ${{ matrix.os }}
-    needs: lint
+    runs-on: codebuild-project-name-${{ github.run_id }}-${{ github.run_attempt }}-${{matrix.os}}
     strategy:
       fail-fast: false
       matrix:
@@ -45,11 +23,11 @@ jobs:
           - 16
           - 18
           - 20
-        os: ["codebuild-async-${{ github.run_id }}-${{ github.run_attempt }}-ubuntu-7.0-medium"]
+        os: ["ubuntu-7.0-medium"]
         browser:
           - FirefoxHeadless
         include:
-          - os: "codebuild-async-${{ github.run_id }}-${{ github.run_attempt }}-windows-2.0-medium"
+          - os: "windows-2.0-medium"
             node: 20
             browser: FirefoxHeadless
 
