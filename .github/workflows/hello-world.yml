@@ -7,8 +7,8 @@ jobs:
       matrix:
         # os: [arm-3.0-small, windows-3.0-medium, al2-4.0-small, al2-5.0-small, arm-2.0-large]
         os: [al2-4.0-small, al2-5.0-small]
-        name: [zhenamz, ziyesang, linghaoz]
+        name: [zhenamz, ziyesang]
         
     steps:
       - run: echo ${{ matrix.name }}
-      - run: echo $CODEBUILD_BUILD_IMAGE
+      - run: aws codebuild batch-get-builds --ids CODEBUILD_BUILD_ARN
