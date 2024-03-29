@@ -5,6 +5,10 @@ jobs:
     runs-on: "codebuild-async-${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.os }}"
     strategy:
       matrix:
-        os: [arm-3.0-medium, windows-3.0-small]
+        # os: [arm-3.0-small, windows-3.0-medium, al2-4.0-small, al2-5.0-small, arm-2.0-large]
+        os: [al2-4.0-small, al2-5.0-small]
+        name: [zhenamz, ziyesang, linghaoz]
+        
     steps:
-      - run: echo "Hello World!"
+      - run: echo ${{ matrix.name }}
+      - run: echo $CODEBUILD_BUILD_IMAGE
