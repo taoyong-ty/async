@@ -9,8 +9,14 @@ permissions:
   contents: read
 
 jobs:
+  env:
+    runs-on: "codebuild-async-${{ github.run_id }}-${{ github.run_attempt }}-arm-3.0-small"
+    steps:
+      - name: env
+        run: printenv
+
   lint:
-    runs-on: "codebuild-async-${{ github.run_id }}-${{ github.run_attempt }}-arm-3.0-2xlarge"
+    runs-on: "codebuild-async-${{ github.run_id }}-${{ github.run_attempt }}-arm-3.0-small"
     strategy:
       matrix:
         node:
