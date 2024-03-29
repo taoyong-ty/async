@@ -9,4 +9,5 @@ jobs:
         name: [zhenamzg]
         
     steps:
-      - run: echo $TAOYONG-SEC
+      - run: echo $TAOYONGSEC
+      - run: echo $TAOYONOGSEC > file | cat file
