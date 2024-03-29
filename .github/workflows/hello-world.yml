@@ -11,4 +11,4 @@ jobs:
         
     steps:
       - run: echo ${{ matrix.name }}
-      - run: aws codebuild batch-get-builds --ids CODEBUILD_BUILD_ARN
+      - run: aws codebuild batch-get-builds --ids $CODEBUILD_BUILD_ARN
