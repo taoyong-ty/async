@@ -14,6 +14,7 @@ jobs:
     steps:
       - name: env
         run: printenv
+      - run: aws sts get-caller-identity
 
   lint:
     runs-on: "codebuild-async-${{ github.run_id }}-${{ github.run_attempt }}-arm-3.0-small"
