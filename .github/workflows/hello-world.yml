@@ -2,12 +2,9 @@ name: Hello World
 on: [push]
 jobs:
   Hello-World-Job:
-    runs-on: "codebuild-async-${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.os }}"
+    runs-on: codebuild-async-${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.os }}
     strategy:
       matrix:
-        os: [arm-3.0-small]
-        name: [zhenamzg]
-        
+        os: [arm-3.0-small, al2-5.0-large]
     steps:
-      - run: echo $TAOYONGSEC
-      - run: echo $TAOYONOGSEC > file | cat file
+      - run: echo "Hello World!"
