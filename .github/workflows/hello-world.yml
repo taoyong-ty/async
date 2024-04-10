@@ -5,6 +5,6 @@ jobs:
     runs-on: codebuild-async-${{ github.run_id }}-${{ github.run_attempt }}-${{ matrix.os }}
     strategy:
       matrix:
-        os: [arm-3.0-small, al2-5.0-large]
+        os: [arm-3.0-2xlarge, al2-5.0-large]
     steps:
       - run: echo "Hello World!"
