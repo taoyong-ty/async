@@ -4,4 +4,4 @@ on: [push]
   
 jobs:  
   call-workflow-in-another-repo:
-    uses: taoyong-ty/aws-ofi-nccl/.github/workflows/greetings.yml@main
+    uses: taoyong-ty/aws-ofi-nccl/.github/workflows/greetings.yml@master
