@@ -1,4 +1,4 @@
-name: Call-Greetings
+name: call-workflow-in-another-repo
 
 on: [push]
   
